@@ -23,6 +23,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    //adding hover
+    board.addEventListener("mouseover", function(event) {
+        if (event.target.classList.contains("square")) {
+            const square = event.target;
+            square.classList.add("hover");
+            console.log("On");
+        }
+    });
+
+    board.addEventListener("mouseout", function(event) {
+        if (event.target.classList.contains("square")) {
+            const square = event.target;
+            square.classList.remove("hover");
+        }
+    });
+
 });
 
 
