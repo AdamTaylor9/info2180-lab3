@@ -24,28 +24,31 @@ document.addEventListener("DOMContentLoaded", function() {
     //adding x's and o's
     var input = "X";
     var gamestate = ["","","","","","","","",""];
+    var winstat = [false];
 
     squares.forEach((cell, index) => {
         cell.addEventListener('click', () => {
-            cell.classList.add(input);
-            cell.textContent = input;
-            gamestate[index]=input;
-            if (input== "X")
-                input = "O";
-            else
-                input = "X";
-            // console.log(gamestate);
-            winstat = winCon(gamestate);
-            if (winstat[0]){
-                gamestate = ["","","","","","","","",""];
-                status.classList.add("you-won");
-                var winMessage;
-                if (winstat[1]=="X")
-                    winMessage = 'Congratulations! X is the Winner!';
+            if (cell.textContent != "X" && cell.textContent !="O" && winstat[0]==false){
+                cell.classList.add(input);
+                cell.textContent = input;
+                gamestate[index]=input;
+                if (input== "X")
+                    input = "O";
                 else
-                    winMessage = 'Congratulations! O is the Winner!';
-                status.textContent = winMessage;
-                
+                    input = "X";
+                // console.log(gamestate);
+                winstat = winCon(gamestate);
+                if (winstat[0]){
+                    gamestate = ["","","","","","","","",""];
+                    status.classList.add("you-won");
+                    var winMessage;
+                    if (winstat[1]=="X")
+                        winMessage = 'Congratulations! X is the Winner!';
+                    else
+                        winMessage = 'Congratulations! O is the Winner!';
+                    status.textContent = winMessage;
+                    
+                }
             }
         });
       });
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         status.classList.remove("you-won");
         status.textContent = "Move your mouse over a square and click to play an X or an O.";
+        winstat=[false];
     });
 
 });
