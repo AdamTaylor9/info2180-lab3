@@ -14,7 +14,8 @@ function winCon(gamestate){
 
 document.addEventListener("DOMContentLoaded", function() {
     const board = document.getElementById("board");
-    const squares = board.querySelectorAll("div");      
+    const squares = board.querySelectorAll("div"); 
+    const status=document.getElementById("status");     
 
     squares.forEach(function (div) {
         div.classList.add("square");
@@ -37,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
             winstat = winCon(gamestate);
             if (winstat[0]){
                 gamestate = ["","","","","","","","",""];
-                const status=document.getElementById("status");
                 status.classList.add("you-won");
                 var winMessage;
                 if (winstat[1]=="X")
@@ -63,6 +63,18 @@ document.addEventListener("DOMContentLoaded", function() {
             const square = event.target;
             square.classList.remove("hover");
         }
+    });
+
+    //restarts game
+    const newGame = document.querySelector(".btn");
+    newGame.addEventListener("click", function(){
+        gamestate = ["","","","","","","","",""];
+        input = "X";
+        squares.forEach(function (div) {
+            div.textContent="";
+        });
+        status.classList.remove("you-won");
+        status.textContent = "Move your mouse over a square and click to play an X or an O.";
     });
 
 });
