@@ -32,9 +32,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 cell.classList.add(input);
                 cell.textContent = input;
                 gamestate[index]=input;
+                console.log(input);
                 if (input== "X")
                     input = "O";
-                else
+                else if (input=="O")
                     input = "X";
                 // console.log(gamestate);
                 winstat = winCon(gamestate);
@@ -75,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
         input = "X";
         squares.forEach(function (div) {
             div.textContent="";
+            div.classList.remove("X");
+            div.classList.remove("O");
         });
         status.classList.remove("you-won");
         status.textContent = "Move your mouse over a square and click to play an X or an O.";
